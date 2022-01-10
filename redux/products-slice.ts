@@ -22,6 +22,19 @@ const productsSlice = createSlice({
           product.display_name.toLowerCase() === text.toLowerCase()
       );
     },
+    sort(state, action) {
+      const { payload } = action;
+      if (payload === "lowest") {
+        state.items = state.items.sort(
+          (prev, current) => prev.price - current.price
+        );
+      }
+      if (payload === "highest") {
+        state.items = state.items.sort(
+          (prev, current) => current.price - prev.price
+        );
+      }
+    },
     filterByCategory(state, action) {
       const { payload: categoryName } = action;
       state.items = state.items.filter(

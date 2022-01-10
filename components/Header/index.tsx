@@ -24,7 +24,7 @@ export default function Header() {
 
   const isCartPage = router.pathname.includes("cart");
   return (
-    <header className="w-full md:w-[60%] md:mx-auto px-4 py-4">
+    <header className="w-full md:mx-auto px-8 py-4">
       <nav className="flex justify-between items-center">
         <h1 className="font-heading">
           <span className="text-green-500">grow</span>

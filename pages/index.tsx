@@ -18,8 +18,7 @@ const Home: NextPage = () => {
     ...state.products,
     ...state.cart,
   }));
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [category, setCategory] = useState<string>();
+  const [priceFilter, setPriceFilter] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
   const searchTerm = useDebounce(searchText, 800);
 
@@ -32,20 +31,6 @@ const Home: NextPage = () => {
       dispatch(cartSliceActions.addItemToCart(product));
     }
   }
-
-  useEffect(() => {
-    const cats = products.map((p: any) => p.category);
-    const uniqueCategories = Array.from(new Set(cats));
-    const newCategories = uniqueCategories.map((cat: any) => ({
-      label: cat,
-      value: cat.replace(" ", "-").toLowerCase(),
-    }));
-    const allOption = {
-      label: "All",
-      value: "",
-    };
-    setCategories([...newCategories, allOption]);
-  }, [products]);
 
   useEffect(() => {
     dispatch(productsActions.search(searchTerm));
@@ -69,13 +54,33 @@ const Home: NextPage = () => {
             placeholder="Search"
           />
         </div>
-        {searchInput && products?.length > 0 ? (
-          <p className="text-neutral-500 text-base my-4">{`There are ${products.length} products found for '${searchInput}'.`}</p>
-        ) : null}
         {searchInput && products?.length === 0 ? (
           <p className="my-4">{`No products found for '${searchInput}'`}</p>
         ) : null}
-        <div className="grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-6">
+        {products?.length > 0 ? (
+          <div className="w-full flex justify-between items-center px-2 mt-4">
+            {!searchInput ? (
+              <span>{`${products.length} products`}</span>
+            ) : (
+              <span>{`There are ${products.length} products found for '${searchInput}'.`}</span>
+            )}
+            <div>
+              <select
+                className="border border-neutral-300 rounded-full"
+                value={priceFilter}
+                onChange={(e) => {
+                  setPriceFilter(e.target.value);
+                  dispatch(productsActions.sort(e.target.value));
+                }}
+                placeholder="Select filter"
+              >
+                <option value="lowest">Price low to high</option>
+                <option value="highest">Price high to low</option>
+              </select>
+            </div>
+          </div>
+        ) : null}
+        <div className="grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4">
           {products.map((product: any) => (
             <Product
               key={product.id}
