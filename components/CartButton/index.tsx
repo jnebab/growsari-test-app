@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { FaShoppingCart, FaCartPlus } from "react-icons/fa";
 
 interface CartButtonProps {
   itemCount: number;
@@ -10,9 +11,9 @@ export default function CartButton({ itemCount = 0 }: CartButtonProps) {
   return (
     <button
       onClick={() => router.push("/cart")}
-      className="bg-green-600 text-white px-4 py-1 rounded-full flex justify-between items-center w-[100px] shadow-md"
+      className="bg-green-600 text-white px-4 py-1 rounded-full flex justify-between items-center w-[75px] shadow-md"
     >
-      <span>Cart</span>
+      <span>{itemCount > 0 ? <FaCartPlus /> : <FaShoppingCart />}</span>
       <span className="text-white rounded-full">{itemCount}</span>
     </button>
   );

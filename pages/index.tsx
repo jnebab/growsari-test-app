@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import Header from "@/components/Header";
 import Product from "@/components/Product";
-import { Category } from "interfaces/category";
+import { Category } from "interfaces";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import useDebounce from "hooks/useDebounce";
 import { productsActions } from "@/redux/products-slice";
@@ -55,11 +54,11 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Shopping Cart</title>
+        <title>Growsari | Home</title>
         <meta name="description" content="A simple shopping cart app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+
       <main className="w-screen h-screen flex flex-col items-center p-6">
         <div className="md:hidden w-full">
           <input
@@ -71,10 +70,10 @@ const Home: NextPage = () => {
           />
         </div>
         {searchInput && products?.length > 0 ? (
-          <p className="text-neutral-500 text-base">{`There are ${products.length} products found for '${searchInput}'.`}</p>
+          <p className="text-neutral-500 text-base my-4">{`There are ${products.length} products found for '${searchInput}'.`}</p>
         ) : null}
         {searchInput && products?.length === 0 ? (
-          <p>{`No products found for '${searchInput}'`}</p>
+          <p className="my-4">{`No products found for '${searchInput}'`}</p>
         ) : null}
         <div className="grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-6">
           {products.map((product: any) => (

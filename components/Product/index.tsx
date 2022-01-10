@@ -1,16 +1,8 @@
+import { ProductItem } from "interfaces";
 import { RootStateOrAny, useSelector } from "react-redux";
 
-interface ProductItemProps {
-  id: number;
-  display_name: string;
-  barcode: string | number;
-  price: number;
-  brand: string | number;
-  category: string;
-}
-
 interface ProductProps {
-  product: ProductItemProps;
+  product: ProductItem;
   onClick: (id: string | number) => void;
 }
 
@@ -45,7 +37,9 @@ export default function Product({ product, onClick }: ProductProps) {
           <button
             onClick={() => onClick(product.id)}
             className={`${
-              isProductInCart ? "bg-orange-500" : "bg-green-600"
+              isProductInCart
+                ? "bg-white border border-orange-500 text-orange-500"
+                : "bg-green-600"
             } shadow-md px-6 py-1  rounded-full text-white h-10 text-sm`}
           >
             {`${isProductInCart ? "Remove" : "Add to Cart"}`}
