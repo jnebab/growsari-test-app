@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Product from "@/components/Product";
-import { Category } from "interfaces";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import useDebounce from "hooks/useDebounce";
 import { productsActions } from "@/redux/products-slice";

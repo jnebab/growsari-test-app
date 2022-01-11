@@ -35,13 +35,6 @@ const productsSlice = createSlice({
         );
       }
     },
-    filterByCategory(state, action) {
-      const { payload: categoryName } = action;
-      state.items = state.items.filter(
-        (product) =>
-          product.category.toLowerCase() === categoryName.toLowerCase()
-      );
-    },
   },
 });
 
