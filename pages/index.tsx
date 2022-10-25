@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Product from "@/components/Product";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import Layout from "layout";
+import Product from "@/components/Product";
 import useDebounce from "hooks/useDebounce";
 import { productsActions } from "@/redux/products-slice";
 import { cartSliceActions } from "@/redux/cart-slice";
@@ -36,14 +36,8 @@ const Home: NextPage = () => {
   }, [searchTerm]);
 
   return (
-    <div>
-      <Head>
-        <title>Growsari | Home</title>
-        <meta name="description" content="A simple shopping cart app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="w-screen h-screen flex flex-col items-center p-6">
+    <Layout title="Growsari | Home">
+      <div className="w-full flex flex-col items-center p-4">
         <div className="md:hidden w-full">
           <input
             type="text"
@@ -88,8 +82,8 @@ const Home: NextPage = () => {
             />
           ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

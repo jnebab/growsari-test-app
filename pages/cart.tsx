@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { BiArrowBack } from "react-icons/bi";
+import Layout from "layout";
 
 export default function Cart() {
   const router = useRouter();
@@ -19,12 +20,7 @@ export default function Cart() {
   }
 
   return (
-    <>
-      <Head>
-        <title>Growsari | Shopping Cart </title>
-        <meta name="description" content="A simple shopping cart app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Growsari | Shopping Cart">
       <div className="w-full md:w-[60%] md:mx-auto text-center p-6 relative">
         {cartItems?.length === 0 ? (
           <div className="flex flex-col w-full items-center">
@@ -68,6 +64,6 @@ export default function Cart() {
           </div>
         ) : null}
       </div>
-    </>
+    </Layout>
   );
 }

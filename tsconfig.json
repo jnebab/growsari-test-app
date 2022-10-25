@@ -19,7 +19,8 @@
       "@/redux/*": ["redux/*"],
       "@/pages/*": ["pages/*"],
       "@/components/*": ["components/*"],
-      "@/styles/*": ["styles/*"],
+      "@/layout/*": ["layout/*"],
+      "@/styles/*": ["styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
